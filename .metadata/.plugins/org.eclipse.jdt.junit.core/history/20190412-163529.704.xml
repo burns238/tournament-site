@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PlayerServiceControllerTest" project="player-service" tests="9" started="9" failures="1" errors="0" ignored="0">
+  <testsuite name="com.mab2.playerservice.PlayerServiceControllerTest" time="0.419">
+    <testcase name="test_retrievePlayer_nonExistingPlayerReturnsMessage" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.098"/>
+    <testcase name="test_savePlayer_playerWithNullId_Returns200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.103"/>
+    <testcase name="test_savePlayer_playerWithNullId_returnsLocationOfGetInHeader" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.031">
+      <failure>java.lang.AssertionError: Response header 'Location' expected:&lt;/player/1&gt; but was:&lt;http://localhost/player/1&gt;
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:55)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:82)
+	at org.springframework.test.web.servlet.result.HeaderResultMatchers.lambda$string$2(HeaderResultMatchers.java:78)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:195)
+	at com.mab2.playerservice.PlayerServiceControllerTest.test_savePlayer_playerWithNullId_returnsLocationOfGetInHeader(PlayerServiceControllerTest.java:137)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:84)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:89)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:41)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:541)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:763)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:463)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:209)
+
+</failure>
+    </testcase>
+    <testcase name="test_retrievePlayer_returnsExistingPlayerAs200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.127"/>
+    <testcase name="test_retrieveAllPlayers_returnsPopulatedListAs200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.011"/>
+    <testcase name="test_retrieveAllPlayers_returnsEmptyListAs200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.005"/>
+    <testcase name="test_retrievePlayer_nonExistingPlayerAs404" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.028"/>
+    <testcase name="test_retrievePlayer_nonExistingPlayerReturnsUri" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.005"/>
+    <testcase name="test_retrieveAllPlayers_returnsPlayersNames" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.009"/>
+  </testsuite>
+</testrun>

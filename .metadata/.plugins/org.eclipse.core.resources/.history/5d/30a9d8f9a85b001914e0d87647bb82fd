@@ -1,0 +1,44 @@
+package com.mab2.playerservice;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class PlayerServiceController {
+	
+	@Autowired
+	KafkaTemplate<String, Player> kafkaTemplate;
+	
+	private static final String TOPIC = "Player";
+	
+	@PostMapping("/player/")
+    public void createPlayer(@RequestBody Player player) {
+		
+		if (playerIdIsValid(player)) {
+			kafkaTemplate.send(TOPIC, player);
+		} else {
+			throw new IllegalArgumentException("Whatever m8");
+		}
+	
+	}
+	
+	@PostMapping("/player/")
+    public void updatePlayerId(@RequestBody Player player) {
+		
+		if (playerIdIsValid(player)) {
+			kafkaTemplate.send(TOPIC, player);
+		} else {
+			throw new IllegalArgumentException("Whatever m8");
+		}
+	
+	}
+
+	private boolean playerIdIsValid(Player player) {
+		return true;
+	}
+	
+}

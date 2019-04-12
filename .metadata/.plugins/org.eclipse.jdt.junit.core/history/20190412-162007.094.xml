@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PlayerServiceControllerTest" project="player-service" tests="7" started="7" failures="0" errors="0" ignored="0">
+  <testsuite name="com.mab2.playerservice.PlayerServiceControllerTest" time="0.156">
+    <testcase name="test_retrievePlayer_nonExistingPlayerReturnsMessage" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.013"/>
+    <testcase name="test_retrievePlayer_returnsExistingPlayerAs200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.094"/>
+    <testcase name="test_retrieveAllPlayers_returnsPopulatedListAs200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.019"/>
+    <testcase name="test_retrieveAllPlayers_returnsEmptyListAs200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.007"/>
+    <testcase name="test_retrievePlayer_nonExistingPlayerAs404" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.007"/>
+    <testcase name="test_retrievePlayer_nonExistingPlayerReturnsUri" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.008"/>
+    <testcase name="test_retrieveAllPlayers_returnsPlayersNames" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.008"/>
+  </testsuite>
+</testrun>

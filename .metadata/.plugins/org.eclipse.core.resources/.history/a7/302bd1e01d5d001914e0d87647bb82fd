@@ -1,0 +1,36 @@
+package com.mab2.playerservice;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class PlayerDaoService {
+
+	private static List<Player> players = new ArrayList<>();
+	private static int usersCount = 3;
+	
+	public List<Player> findAll() {
+		return players;
+	}
+	
+	public Player save(Player player) {
+		if (player.getId() == null || findOne(player.getId()).isPresent()) {
+			player.setId(++usersCount);
+		}
+		players.add(player);
+		return player;
+	}
+	
+	public Optional<User> findOne(int id) {
+		return players.stream().filter(u -> u.getId().equals(id)).findFirst();
+	}
+	
+	public void deleteById(int id) {
+		players.removeIf(u -> u.getId().equals(id));
+	}
+	
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PlayerServiceControllerTest" project="player-service" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.mab2.playerservice.PlayerServiceControllerTest" time="0.146">
+    <testcase name="test_retrieveAllPlayers_returnsPopulatedListAs200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.121"/>
+    <testcase name="test_retrieveAllPlayers_returnsEmptyListAs200" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.007"/>
+    <testcase name="test_retrieveAllPlayers_returnsPlayersNames" classname="com.mab2.playerservice.PlayerServiceControllerTest" time="0.018"/>
+  </testsuite>
+</testrun>
