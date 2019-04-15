@@ -11,6 +11,15 @@ HELP.md
 .springBeans
 .sts4-cache
 
+.metadata 
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -27,3 +36,4 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+/.metadata/
