@@ -39,14 +39,12 @@ public class PlayerServiceControllerTest {
 
     @Before
     public void before() throws Exception {
-        // define a fixed date-time
         Date fixedDateTime = DATE_FORMATTER.parse("01/07/2016 16:45:00:000");
         DateTimeUtils.setCurrentMillisFixed(fixedDateTime.getTime());
     }
  
     @After
     public void after() throws Exception {
-        // Make sure to cleanup afterwards
         DateTimeUtils.setCurrentMillisSystem();
     }
 	
