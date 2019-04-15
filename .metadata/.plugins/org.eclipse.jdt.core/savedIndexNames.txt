@@ -18,7 +18,6 @@ INDEX VERSION 1.131+/Users/mikeburns/Documents/tournament-site/.metadata/.plugin
 14398645.index
 952570766.index
 2622948662.index
-2943979924.index
 3055563656.index
 2520873631.index
 2340890878.index
@@ -195,7 +194,6 @@ INDEX VERSION 1.131+/Users/mikeburns/Documents/tournament-site/.metadata/.plugin
 2950916545.index
 1316994477.index
 2420060935.index
-287527347.index
 1789937879.index
 1714070044.index
 1943799443.index
