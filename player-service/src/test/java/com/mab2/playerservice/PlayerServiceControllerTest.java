@@ -7,9 +7,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.hamcrest.Matchers.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.joda.time.DateTimeUtils;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -29,6 +34,21 @@ public class PlayerServiceControllerTest {
 	
 	@MockBean
 	private PlayerRepository playerRepositoryMock;
+
+    private SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss:SSS");
+
+    @Before
+    public void before() throws Exception {
+        // define a fixed date-time
+        Date fixedDateTime = DATE_FORMATTER.parse("01/07/2016 16:45:00:000");
+        DateTimeUtils.setCurrentMillisFixed(fixedDateTime.getTime());
+    }
+ 
+    @After
+    public void after() throws Exception {
+        // Make sure to cleanup afterwards
+        DateTimeUtils.setCurrentMillisSystem();
+    }
 	
 	@Test
 	public void test_retrieveAllPlayers_returnsEmptyListAs200() throws Exception {
@@ -146,9 +166,9 @@ public class PlayerServiceControllerTest {
 		player.setName("Name");
 		
 		String uri = "/player";
-		Mockito.when(playerRepositoryMock.findById(1)).thenReturn(Optional.of(new Player(1, "Name")));
+		Mockito.when(playerRepositoryMock.findById(1)).thenReturn(Optional.of(player));
 	    mvc.perform(post(uri)
-	    		.content("{\"name\":\"Name\"}")
+	    		.content("{\"id\":1,\"name\":\"Name\"}")
 	    		.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 		

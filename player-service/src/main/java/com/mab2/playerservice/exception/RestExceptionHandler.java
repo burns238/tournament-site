@@ -29,11 +29,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	@ExceptionHandler(NotFoundException.class)
-	public final ResponseEntity<ExceptionResponse> handleUserNotFoundExceptions(Exception ex, WebRequest req) {
+	public final ResponseEntity<ExceptionResponse> handleEntityNotFoundExceptions(Exception ex, WebRequest req) {
 		
 		ExceptionResponse exceptionResponse = 
 				new ExceptionResponse(new Date(), req.getDescription(false), ex.getMessage());
 		return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND);
+		
+	}
+	
+	@ExceptionHandler(ExistingEntityException.class)
+	public final ResponseEntity<ExceptionResponse> handleExistingEntityExceptions(Exception ex, WebRequest req) {
+		
+		ExceptionResponse exceptionResponse = 
+				new ExceptionResponse(new Date(), req.getDescription(false), ex.getMessage());
+		return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.BAD_REQUEST);
 		
 	}
 	

@@ -11,7 +11,9 @@ HELP.md
 .springBeans
 .sts4-cache
 
-.metadata 
+.metadata/.plugins/*
+*.metadata*
+.metadata/*
 bin/
 tmp/
 *.tmp
@@ -19,6 +21,16 @@ tmp/
 *.swp
 *~.nib
 local.properties
+.mylyn/.taskListIndex/
+*.log
+.plugins/org.eclipse.m2e.core/nexus/
+*.swp
+.mylyn/*
+.plugins/org.eclipse.core.resources/.root/*.tree
+.markers
+.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs
+.plugins/org.eclipse.ui.workbench/workingsets.xml
+.plugins/org.eclipse.team.cvs.core
 
 ### IntelliJ IDEA ###
 .idea
@@ -37,3 +49,6 @@ local.properties
 ### VS Code ###
 .vscode/
 /.metadata/
+
+prepare-jars.sh
+

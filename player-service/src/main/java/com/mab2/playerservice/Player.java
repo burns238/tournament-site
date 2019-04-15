@@ -1,6 +1,7 @@
 package com.mab2.playerservice;
 
 import java.util.Date;
+import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -81,11 +82,12 @@ public class Player {
 		super();
 		this.id = id;
 		this.name = name;
-		this.created = new Date();
+		this.created = DateTime.now().toDate();
 	}
 
 	public Player() {
 		super();
+		this.created = DateTime.now().toDate();
 	}
 
 }
