@@ -11,9 +11,7 @@ HELP.md
 .springBeans
 .sts4-cache
 
-.metadata/.plugins/*
-*.metadata*
-.metadata/*
+*.metadata/*
 bin/
 tmp/
 *.tmp
