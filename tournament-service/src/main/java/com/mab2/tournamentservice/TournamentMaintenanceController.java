@@ -20,25 +20,19 @@ public class TournamentMaintenanceController {
 	TournamentMaintenanceService service;
 	
 	@PostMapping(path="/tournament")
-	public ResponseEntity<UUID> createTournament(@RequestBody Tournament tournament)
-		throws JsonProcessingException {
-		
+	public ResponseEntity<UUID> createTournament(@RequestBody Tournament tournament) throws JsonProcessingException {
 		UUID newId = service.createTournament(tournament);
 		return new ResponseEntity<UUID>(newId, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping(path="/tournament/{id}")
-	public ResponseEntity<UUID> deleteTournament(@PathVariable UUID id)
-		throws JsonProcessingException {
-		
+	public ResponseEntity<UUID> deleteTournament(@PathVariable UUID id)	throws JsonProcessingException {
 		service.deleteTournament(id);
 		return ResponseEntity.ok().build();
 	}
 	
 	@PostMapping(path="/tournament/{id}/finish")
-	public ResponseEntity<UUID> finishTournament(@PathVariable UUID id)
-		throws JsonProcessingException {
-		
+	public ResponseEntity<UUID> finishTournament(@PathVariable UUID id)	throws JsonProcessingException {
 		service.finishTournament(id);
 		return ResponseEntity.ok().build();
 	}
