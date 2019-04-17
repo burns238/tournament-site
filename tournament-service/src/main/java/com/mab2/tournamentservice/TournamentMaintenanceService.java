@@ -151,8 +151,4 @@ public final class TournamentMaintenanceService {
 		           .count() == 2;
 	}
 
-	public void postResult(UUID id, Result result) {
-		// TODO Auto-generated method stub
-		
-	} 
 }
