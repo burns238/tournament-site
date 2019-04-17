@@ -6,8 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,16 +30,9 @@ public class PlayerServiceController {
 	}
 	
 	@GetMapping(path="/player/{id}")
-	public Resource<Player> retrievePlayer(@PathVariable int id) {
-		Player player = playerRepository.findById(id)
+	public Player retrievePlayer(@PathVariable int id) {
+		return playerRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("player-"+id));
-		Resource<Player> resource = new Resource<Player>(player);
-		ControllerLinkBuilder linkTo = 
-				ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(this.getClass()).retrieveAllPlayers());
-		
-		resource.add(linkTo.withRel("all-players"));
-		
-		return resource;
 	}
 	
 	@PostMapping(path="/player")
