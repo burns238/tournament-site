@@ -74,9 +74,11 @@ public class TournamentMaintenanceController {
 	public ResponseEntity<UUID> postResult(@PathVariable UUID id, @RequestBody Result result) throws JsonProcessingException, BadRequestException {
 		if (service.tournamentDoesntExistOrIsDeleted(id)) {
 			throw new NotFoundException("Tournament " + id); 
+		} else if (result.containsDuplicatePlayers()) {
+			throw new BadRequestException("Players can't play against themselves"); 
 		} else if (!service.tournamentContainsResultPlayers(id, result)) {
 			throw new BadRequestException("All players for this result must have been added to the tournament"); 
-		}
+		} 
 		
 		PostResultEvent postResultEvent = new PostResultEvent(id, result.getPlayerResults());  
 		service.writeEvent(postResultEvent, PostResultEvent.class.getSimpleName());
