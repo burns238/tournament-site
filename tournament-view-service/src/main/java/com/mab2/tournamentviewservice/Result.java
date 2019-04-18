@@ -1,18 +1,32 @@
 package com.mab2.tournamentviewservice;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.mab2.tournamentviewservice.events.PostResultEvent;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Result {
-	Integer player1Id;
-	Integer player1Wins;
-	Integer player2Id;
-	Integer player2Wins;
+	List<PlayerResult> playerResults;
 	
 	public static Result getResultFromResultEvent(PostResultEvent postResultEvent) {
-		return new Result(postResultEvent.getPlayer1Id(), postResultEvent.getPlayer1Wins(),
-				postResultEvent.getPlayer2Id(), postResultEvent.getPlayer2Wins());
+		return new Result(postResultEvent.getPlayerResults());
+	}
+	
+	public Set<Integer> getPlayersInResult() {
+		return this.playerResults.stream()
+					.map(p -> p.getPlayerId())
+					.collect(Collectors.toSet());
+	}
+	
+	public Boolean equalsPlayers(Result that) {
+		return this.getPlayersInResult().equals(that.getPlayersInResult());
 	}
 }

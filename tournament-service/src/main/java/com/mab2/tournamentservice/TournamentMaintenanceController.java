@@ -77,9 +77,8 @@ public class TournamentMaintenanceController {
 		} else if (!service.tournamentContainsResultPlayers(id, result)) {
 			throw new BadRequestException("All players for this result must have been added to the tournament"); 
 		}
-		PostResultEvent postResultEvent = 
-				new PostResultEvent(id, result.getPlayer1Id(), result.getPlayer1Wins(),
-						result.getPlayer2Id(), result.getPlayer2Wins());  
+		
+		PostResultEvent postResultEvent = new PostResultEvent(id, result.getPlayerResults());  
 		service.writeEvent(postResultEvent, PostResultEvent.class.getSimpleName());
 		return ResponseEntity.ok().build();
 	}

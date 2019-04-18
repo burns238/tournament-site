@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,25 +82,30 @@ public final class TournamentViewService {
 		Tournament existing = tournaments.get(id);
 		var newPlayersList = new ArrayList<Integer>(existing.getPlayers());
 		newPlayersList.add(playerId);
-		Tournament proposed = new Tournament(existing.getId(), existing.getName(), existing.getType(),
+		return new Tournament(existing.getId(), existing.getName(), existing.getType(),
 				newPlayersList, existing.getResults(), existing.getCreated(), existing.getFinished());
-		return proposed;
 	}
 	
 	private Tournament addResultToExistingTournament(UUID id, Result result) {
+		
 		Tournament existing = tournaments.get(id);
-		var newResultsList = new ArrayList<Result>(existing.getResults());
+		List<Result> existingResultsWithoutDuplicate = 
+				existing.getResults()
+				.stream()
+				.filter(r -> !r.equalsPlayers(result))
+				.collect(Collectors.toList());
+		
+		var newResultsList = new ArrayList<Result>(existingResultsWithoutDuplicate);
 		newResultsList.add(result);
-		Tournament proposed = new Tournament(existing.getId(), existing.getName(), existing.getType(),
+		
+		return new Tournament(existing.getId(), existing.getName(), existing.getType(),
 				existing.getPlayers(), newResultsList, existing.getCreated(), existing.getFinished());
-		return proposed;
 	}
 	
 	private Tournament finishExistingTournament(UUID id) {
 		Tournament existing = tournaments.get(id);
-		Tournament proposed = new Tournament(existing.getId(), existing.getName(), existing.getType(),
+		return new Tournament(existing.getId(), existing.getName(), existing.getType(),
 				existing.getPlayers(), existing.getResults(), existing.getCreated(), true);
-		return proposed;
 	}
 
 }

@@ -128,6 +128,17 @@ public final class TournamentMaintenanceService {
 			return false;
 		}
 	}
+	
+	public static Boolean tournamentEventContainsPlayerIdInList(ResolvedEvent event, List<Integer> playerIds) {
+		try {
+			var jsonEvent = new String(event.originalEvent().data);
+			var jsonObject = new JSONObject(jsonEvent);
+			return (jsonObject.has("playerId") && playerIds.contains(jsonObject.getInt("playerId"))); 
+		} catch (JSONException e) {
+			log.warn("Failed to parse json from event " + event.toString());
+			return false;
+		}
+	}
 
 	public List<String> validationErrorsForPlayerList(UUID tournamentId, List<Integer> playerIds) {
 		Stream<String> notFoundStream = playerIds.parallelStream()
@@ -143,13 +154,16 @@ public final class TournamentMaintenanceService {
 	}
 
 	public Boolean tournamentContainsResultPlayers(UUID tournamentId, Result result) {
+		List<Integer> players = result.getPlayerResults()
+									.stream()
+									.map(pw -> pw.getPlayerId())
+									.collect(Collectors.toList());
 		return getEventsByTournamentId(tournamentId)
 				   .filter(e -> tournamentEventIsAnAddPlayer(e))
-		           .filter(e -> tournamentEventContainsPlayerId(e, result.getPlayer1Id()) 
-		        		   || tournamentEventContainsPlayerId(e, result.getPlayer2Id()))
+		           .filter(e -> tournamentEventContainsPlayerIdInList(e, players)) 
 		           .distinct()
-		           .limit(2)
-		           .count() == 2;
+		           .limit(players.size())
+		           .count() == players.size();
 	}
 
 }

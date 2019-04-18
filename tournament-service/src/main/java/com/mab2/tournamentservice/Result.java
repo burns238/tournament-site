@@ -1,16 +1,20 @@
 package com.mab2.tournamentservice;
 
-import lombok.Value;
+import java.util.List;
 
-@Value
+import com.mab2.tournamentservice.events.PostResultEvent;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Result {
+	List<PlayerResult> playerResults;
 	
-	Integer player1Id;
-	
-	Integer player1Wins;
-	
-	Integer player2Id;
-	
-	Integer player2Wins;
-	
+	public static Result getResultFromResultEvent(PostResultEvent postResultEvent) {
+		return new Result(postResultEvent.getPlayerResults());
+	}
 }

@@ -4,15 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
+
+import com.mab2.tournamentviewservice.PlayerResult;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostResultEvent implements TournamentEvent {
 	UUID id;
-	Integer player1Id;
-	Integer player1Wins;
-	Integer player2Id;
-	Integer player2Wins;
+	List<PlayerResult> playerResults;
 }
