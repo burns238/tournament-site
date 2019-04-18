@@ -32,7 +32,7 @@ public class TournamentMaintenanceController {
 				new CreateTournamentEvent(UUID.randomUUID(), 
 						tournament.getName(), tournament.getType());  
 		
-		service.writeEvent(createTournamentEvent, CreateTournamentEvent.class.getName());
+		service.writeEvent(createTournamentEvent, CreateTournamentEvent.class.getSimpleName());
 		return new ResponseEntity<UUID>(createTournamentEvent.getId(), HttpStatus.CREATED);
 		
 	}
@@ -42,7 +42,7 @@ public class TournamentMaintenanceController {
 		if (service.tournamentDoesntExistOrIsDeleted(id)) {
 			throw new NotFoundException("Tournament " + id);
 		}
-		service.writeEvent(new DeleteTournamentEvent(id), DeleteTournamentEvent.class.getName());
+		service.writeEvent(new DeleteTournamentEvent(id), DeleteTournamentEvent.class.getSimpleName());
 		return ResponseEntity.ok().build();
 	}
 	
@@ -51,7 +51,7 @@ public class TournamentMaintenanceController {
 		if (service.tournamentDoesntExistOrIsDeleted(id)) {
 			throw new NotFoundException("Tournament " + id);
 		}
-		service.writeEvent(new FinishTournamentEvent(id), FinishTournamentEvent.class.getName());
+		service.writeEvent(new FinishTournamentEvent(id), FinishTournamentEvent.class.getSimpleName());
 		return ResponseEntity.ok().build();
 	}
 	
@@ -80,7 +80,7 @@ public class TournamentMaintenanceController {
 		PostResultEvent postResultEvent = 
 				new PostResultEvent(id, result.getPlayer1Id(), result.getPlayer1Wins(),
 						result.getPlayer2Id(), result.getPlayer2Wins());  
-		service.writeEvent(postResultEvent, PostResultEvent.class.getName());
+		service.writeEvent(postResultEvent, PostResultEvent.class.getSimpleName());
 		return ResponseEntity.ok().build();
 	}
 }

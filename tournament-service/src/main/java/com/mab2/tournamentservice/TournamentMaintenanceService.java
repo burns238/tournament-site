@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,15 +75,15 @@ public final class TournamentMaintenanceService {
 	}
 	
 	public Boolean tournamentEventIsACreation(ResolvedEvent event) {
-		return tournamentEventIsOfType(event, CreateTournamentEvent.class.getName());
+		return tournamentEventIsOfType(event, CreateTournamentEvent.class.getSimpleName());
 	}
 	
 	public static Boolean tournamentEventIsADeletion(ResolvedEvent event) {
-		return tournamentEventIsOfType(event, DeleteTournamentEvent.class.getName());
+		return tournamentEventIsOfType(event, DeleteTournamentEvent.class.getSimpleName());
 	}
 	
 	public static Boolean tournamentEventIsAnAddPlayer(ResolvedEvent event) {
-		return tournamentEventIsOfType(event, AddPlayerEvent.class.getName());
+		return tournamentEventIsOfType(event, AddPlayerEvent.class.getSimpleName());
 	}
 	
 	public static Boolean tournamentEventIsOfType(ResolvedEvent event, String type) {
@@ -95,7 +96,7 @@ public final class TournamentMaintenanceService {
 			var jsonObject = new JSONObject(jsonEvent);
 			return (jsonObject.has("id") && jsonObject.getString("id").equals(id.toString())); 
 		} catch (Exception e) {
-			log.warn("Failed to parse json from event " + event.toString());
+			log.warn("Failed to parse json from event " + event.originalEventNumber());
 			return false;
 		}
 	}
@@ -103,7 +104,7 @@ public final class TournamentMaintenanceService {
 	private static EventData buildAddPlayerEvent(UUID tournamentId, Integer playerId) {
 		try {
 			return EventData.newBuilder()
-					.type(AddPlayerEvent.class.getName())
+					.type(AddPlayerEvent.class.getSimpleName())
 					.jsonData(mapper.writeValueAsString(new AddPlayerEvent(tournamentId, playerId)))
 					.build();
 		} catch (JsonProcessingException e) {
@@ -122,7 +123,7 @@ public final class TournamentMaintenanceService {
 			var jsonEvent = new String(event.originalEvent().data);
 			var jsonObject = new JSONObject(jsonEvent);
 			return (jsonObject.has("playerId") && jsonObject.getInt("playerId") == playerId); 
-		} catch (Exception e) {
+		} catch (JSONException e) {
 			log.warn("Failed to parse json from event " + event.toString());
 			return false;
 		}

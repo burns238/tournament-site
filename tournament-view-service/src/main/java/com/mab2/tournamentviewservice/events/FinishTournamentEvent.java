@@ -1,4 +1,4 @@
-package com.mab2.tournamentservice.events;
+package com.mab2.tournamentviewservice.events;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package com.mab2.tournamentservice.events;
+package com.mab2.tournamentviewservice.events;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,8 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddPlayerEvent implements TournamentEvent {
+public class CreateTournamentEvent implements TournamentEvent {
 	UUID id;
-	Integer playerId;
+    String name;
+    String type;
 }
